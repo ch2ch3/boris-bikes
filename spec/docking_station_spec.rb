@@ -1,5 +1,4 @@
 require 'docking_station'
-require 'bike'
 
 describe DockingStation do
 
