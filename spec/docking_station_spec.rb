@@ -1,10 +1,10 @@
-require 'bike'
 require 'docking_station'
+require 'bike'
 
 describe DockingStation do
 
-	let(:bike) {Bike.new}
-	let(:station) {DockingStation.new(:capacity => 20)}
+	let(:bike) { Bike.new }
+	let(:station) { DockingStation.new(:capacity => 123) }
 
 	# it "should provide the list of available bikes" do
 	# 	working_bike, broken_bike = Bike.new, Bike.new
@@ -13,6 +13,10 @@ describe DockingStation do
 	# 	station.dock(broken_bike)
 	# 	expect(station.available_bikes).to eq [working_bike]
 	# end
+
+	it "should allow setting default capacity on initialising" do
+		expect(station.capacity).to eq 123
+	end
 
 	it "should not release a broken bike" do
 		bike.break!
