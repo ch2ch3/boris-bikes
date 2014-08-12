@@ -1,8 +1,10 @@
 require 'bike'
 
 class Dock
+	DEFAULT_CAPACITY = 10
 
-	def initialize
+	def initialize(options = {})
+		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@bikes = []
 	end
 
@@ -11,6 +13,7 @@ class Dock
 	end
 
 	def dock(bike)
+		raise "Station is full" if full?
 		bikes << bike
 	end
 
@@ -20,6 +23,10 @@ class Dock
 
 	def available_bikes
 		bikes.select{|bike|bike.work?}
+	end
+
+	def full?
+		@bikes.count == @capacity
 	end
 
 

@@ -3,7 +3,7 @@ require 'dock'
 
 describe Dock do
 
-	let(:dock) {Dock.new}
+	let(:dock) {Dock.new(:capacity => 20)}
 	let(:bike) {Bike.new}
 
 	it 'should know if a bike is docked to it' do
