@@ -22,7 +22,7 @@ class DockingStation
 	end
 
 	def available_bikes
-		@bikes.select{|bike|bike.work?}
+		@bikes.select { |bike| bike.work? }
 	end
 
 	def full?
