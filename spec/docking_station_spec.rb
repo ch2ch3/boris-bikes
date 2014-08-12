@@ -3,7 +3,7 @@ require 'docking_station'
 describe DockingStation do
 
 	let(:bike) { Bike.new }
-	let(:station) { DockingStation.new(:capacity => 123) }
+	let(:station) { DockingStation.new(:capacity => 30) }
 
 	# it "should provide the list of available bikes" do
 	# 	working_bike, broken_bike = Bike.new, Bike.new
@@ -14,7 +14,7 @@ describe DockingStation do
 	# end
 
 	it "should allow setting default capacity on initialising" do
-		expect(station.capacity).to eq 123
+		expect(station.capacity).to eq 30
 	end
 
 	it "should not release a broken bike" do
