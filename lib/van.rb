@@ -8,8 +8,4 @@ class Van
 		self.capacity = options.fetch(:capacity, capacity)
 	end
 
-	def pick_up_bikes_from(origin)
-		origin.release
-	end
-
 end
