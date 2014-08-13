@@ -2,7 +2,7 @@ require 'bike_container'
 
 class ContainerHolder; include BikeContainer; end
 
-describe BikeContainer do
+shared_examples 'a bike container' do
 
 	let(:bike) { Bike.new }
 	let(:holder) { ContainerHolder.new }
@@ -19,12 +19,12 @@ describe BikeContainer do
 
 	it "should be able to release a bike" do
 		holder.dock(bike)
-		holder.release!
+		holder.release(bike)
 		expect(holder.bikes).to eq []
 	end
 
 	def fill_container(container)
-		10.times { container.dock(Bike.new) }
+		container.capacity.times { container.dock(Bike.new) }
 	end
 
 	it "should know if it's full" do

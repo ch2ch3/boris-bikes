@@ -1,3 +1,4 @@
+require 'bike_container_spec'
 require 'docking_station'
 
 describe DockingStation do
@@ -12,6 +13,8 @@ describe DockingStation do
 	# 	station.dock(broken_bike)
 	# 	expect(station.available_bikes).to eq [working_bike]
 	# end
+
+	it_behaves_like 'a bike container'
 
 	it "should allow setting default capacity on initialising" do
 		expect(station.capacity).to eq 30
