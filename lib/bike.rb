@@ -2,6 +2,7 @@ class Bike
 
 	def initialize
 		@working = true
+		self
 	end
 
 	def work?
@@ -10,6 +11,7 @@ class Bike
 
 	def break!
 		@working = false
+		self
 	end
 
 	def fix!

@@ -3,10 +3,13 @@ require 'van'
 
 describe Van do
 
-	let(:bike) { Bike.new }
-	let(:van) { Van.new }
+	let(:bike)        { Bike.new           }
+	let(:broken_bike) { Bike.new.break!    }
+	let(:van)         { Van.new            }
+	let(:old_street)  { DockingStation.new }
+	let(:garage)      { Garage.new         }
 
-	it_behaves_like 'a bike container'
+	it_behaves_like "a bike container"
 
 	context "at initialisation" do
 
@@ -21,5 +24,20 @@ describe Van do
 
 	end
 
+	context "picking up broken bikes" do
+
+		# it "picks up broken bikes from docking stations" do
+		# 	old_street.dock(broken_bike)
+		# 	expect(old_street.bikes).to eq [broken_bike]
+		# 	van.pick_up_broken_bikes_from(old_street)
+		# 	expect(van.bikes).to eq [broken_bike]
+		# end
+
+		it "picks up broken bikes from docking stations" do
+			van = Van.new(:bikes => [broken_bike])
+			expect(van.bikes).to eq [broken_bike]
+		end
+
+	end
 
 end
