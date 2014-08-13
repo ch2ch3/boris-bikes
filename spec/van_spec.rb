@@ -56,6 +56,13 @@ describe Van do
 			expect(van.bikes).to eq [fixed_bike]
 		end
 
+		it "drops off fixed bikes at docking stations" do
+			garage.dock(fixed_bike)
+			van = Van.new(:bikes => [fixed_bike])
+			van.drop_off_fixed_bikes_at(old_street)
+			expect(van.bikes).to eq []
+		end
+
 	end
 
 end
