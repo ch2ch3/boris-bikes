@@ -6,15 +6,20 @@ describe Garage do
 	let(:bike) { Bike.new }
 	let(:garage) { Garage.new }
 
-	it_behaves_like 'a bike container'
+	it_behaves_like "a bike container"
 
 	context "at initialisation" do
+
+		it "can be initialised with bikes" do
+			garage = Garage.new(:bikes => [bike])
+			expect(garage.bikes).to eq [bike]
+		end
 
 		it "has a default capacity" do
 			expect(garage.capacity).to eq 10
 		end
 
-		it "allows setting default capacity on initialising" do
+		it "allows setting capacity on initialising" do
 			garage = Garage.new(:capacity => 250)
 			expect(garage.capacity).to eq 250
 		end

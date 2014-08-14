@@ -7,7 +7,7 @@ describe Van do
 	let(:broken_bike) { Bike.new.break!      }
 	let(:fixed_bike)  { Bike.new.break!      }
 	let(:van)         { Van.new              }
-	let(:old_street)  { DockingStation.new   }
+	let(:station)  { DockingStation.new   }
 	let(:garage)      { Garage.new           }
 
 	it_behaves_like "a bike container"
@@ -23,7 +23,7 @@ describe Van do
 			expect(van.capacity).to eq 10
 		end
 
-		it "allows setting default capacity on initialising" do
+		it "allows setting capacity on initialising" do
 			van = Van.new(:capacity => 20)
 			expect(van.capacity).to eq 20
 		end
@@ -33,9 +33,9 @@ describe Van do
 	context "picking up broken bikes" do
 
 		it "picks up broken bikes from docking stations" do
-			old_street.dock(broken_bike)
-			expect(old_street.bikes).to eq [broken_bike]
-			van.pick_up_broken_bikes_from(old_street)
+			station.dock(broken_bike)
+			expect(station.bikes).to eq [broken_bike]
+			van.pick_up_broken_bikes_from(station)
 			expect(van.bikes).to eq [broken_bike]
 		end
 
@@ -58,9 +58,9 @@ describe Van do
 		it "drops off fixed bikes at docking stations" do
 			garage.dock(fixed_bike)
 			van = Van.new(:bikes => [fixed_bike])
-			van.drop_off_fixed_bikes_at(old_street)
+			van.drop_off_fixed_bikes_at(station)
 			expect(van.bikes).to eq []
-			expect(old_street.bikes).to eq [fixed_bike]
+			expect(station.bikes).to eq [fixed_bike]
 		end
 
 	end

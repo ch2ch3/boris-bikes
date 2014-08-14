@@ -2,7 +2,7 @@ require 'bike_container'
 
 class ContainerHolder; include BikeContainer; end
 
-shared_examples 'a bike container' do
+shared_examples "a bike container" do
 
 	let(:bike) { Bike.new }
 	let(:holder) { ContainerHolder.new }
