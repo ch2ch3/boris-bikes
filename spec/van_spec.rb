@@ -4,9 +4,8 @@ require 'van'
 describe Van do
 
 	let(:bike)        { Bike.new             }
-	let(:bike2)       { Bike.new             }
 	let(:broken_bike) { Bike.new.break!      }
-	let(:fixed_bike)  { Bike.new.break! }
+	let(:fixed_bike)  { Bike.new.break!      }
 	let(:van)         { Van.new              }
 	let(:old_street)  { DockingStation.new   }
 	let(:garage)      { Garage.new           }
@@ -16,7 +15,7 @@ describe Van do
 	context "at initialisation" do
 
 		it "can be initialised with bikes" do
-			van = Van.new(:bikes => [bike, bike2])
+			van = Van.new(:bikes => [bike, broken_bike])
 			expect(van.bike_count).to eq 2
 		end
 
@@ -61,6 +60,7 @@ describe Van do
 			van = Van.new(:bikes => [fixed_bike])
 			van.drop_off_fixed_bikes_at(old_street)
 			expect(van.bikes).to eq []
+			expect(old_street.bikes).to eq [fixed_bike]
 		end
 
 	end

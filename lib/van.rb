@@ -32,6 +32,7 @@ class Van
 	def drop_off_fixed_bikes_at(station)
 		self.available_bikes.each do |fixed_bike|
 			self.release(fixed_bike)
+			station.dock(fixed_bike)
 		end
 	end
 
