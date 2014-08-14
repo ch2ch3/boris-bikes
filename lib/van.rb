@@ -23,7 +23,7 @@ class Van
 	end
 
 	def pick_up_fixed_bikes_from(garage)
-		garage.bikes.each do |bike|
+		garage.available_bikes.each do |bike|
 			garage.release(bike)
 			self.dock(bike)
 		end

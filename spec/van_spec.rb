@@ -7,7 +7,7 @@ describe Van do
 	let(:broken_bike) { Bike.new.break!      }
 	let(:fixed_bike)  { Bike.new.break!      }
 	let(:van)         { Van.new              }
-	let(:station)  { DockingStation.new   }
+	let(:station)     { DockingStation.new   }
 	let(:garage)      { Garage.new           }
 
 	it_behaves_like "a bike container"
@@ -39,6 +39,13 @@ describe Van do
 			expect(van.bikes).to eq [broken_bike]
 		end
 
+		it "does not pick up working bikes from docking stations" do
+			station = DockingStation.new(:bikes => [bike, broken_bike])
+			expect(station.bike_count).to eq 2
+			van.pick_up_broken_bikes_from(station)
+			expect(station.bikes).to eq [bike]
+		end
+
 		it "drops off broken bikes at garage" do
 			van = Van.new(:bikes => [broken_bike])
 			van.drop_off_broken_bikes_at(garage)
@@ -51,6 +58,12 @@ describe Van do
 
 		it "picks up fixed bikes from garage" do
 			garage.dock(fixed_bike)
+			van.pick_up_fixed_bikes_from(garage)
+			expect(van.bikes).to eq [fixed_bike]
+		end
+
+		it "does not pick up broken bikes from garage" do
+			garage = Garage.new(:bikes => [broken_bike, fixed_bike.fix!])
 			van.pick_up_fixed_bikes_from(garage)
 			expect(van.bikes).to eq [fixed_bike]
 		end
