@@ -10,7 +10,7 @@ class DockingStation
 	end
 
 	def release!
-	 	bikes.delete(available_bikes.first)
+	 	self.available_bikes.pop
 	end
 
 end
