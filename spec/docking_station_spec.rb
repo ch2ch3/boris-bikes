@@ -24,10 +24,19 @@ describe DockingStation do
 			expect(station.capacity).to eq 30
 		end
 
+		it "can be initialised with a location" do
+			station = DockingStation.new(:location => :picadilly)
+			expect(station.location).to eq :picadilly
+		end
+
 	end
 
-	context "releasing bikes" do
-		
+	it "knows if it's empty" do
+		expect(station.empty?).to eq true
+	end
+
+	it "has a location" do
+		expect(station.location).not_to eq nil
 	end
 
 end
