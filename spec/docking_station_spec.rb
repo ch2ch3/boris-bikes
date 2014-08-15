@@ -26,11 +26,8 @@ describe DockingStation do
 
 	end
 
-	# it "does not release a broken bike for hire" do
-	# 	bike.break!
-	# 	station.dock(bike)
-	# 	station.release!
-	# 	expect(station.bikes).to eq [bike]
-	# end
+	context "releasing bikes" do
+		
+	end
 
 end

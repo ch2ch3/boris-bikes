@@ -4,7 +4,7 @@ class ContainerHolder; include BikeContainer; end
 
 shared_examples "a bike container" do
 
-	let(:bike) { Bike.new }
+	let(:bike)   { Bike.new }
 	let(:holder) { ContainerHolder.new }
 
 	it "knows if a bike is docked to it" do
@@ -35,7 +35,7 @@ shared_examples "a bike container" do
 
 	it "does not accept a bike if it's full" do
 		fill_container(holder)
-		expect(lambda { holder.dock(bike) }).to raise_error(RuntimeError)
+		expect(lambda { holder.dock(bike) }).to raise_error
 	end
 
 	it "provides the list of available bikes" do
@@ -52,6 +52,33 @@ shared_examples "a bike container" do
 		holder.dock(working_bike)
 		holder.dock(broken_bike)
 		expect(holder.broken_bikes).to eq [broken_bike]
+	end
+
+	it "should only dock bikes" do
+		expect{ holder.dock(double :person) }.to raise_error
+	end
+
+	it "should only dock bikes that haven't been docked" do
+		holder.dock(bike)
+		expect{ holder.dock(bike) }.to raise_error
+	end
+
+
+
+	context "releasing bikes" do
+		
+		it "should not release a bike that's not there" do
+			expect{ holder.release(bike) }.to raise_error
+		end
+
+		it "should fail if an empty argument is passed with release" do
+			expect{ holder.release() }.to raise_error
+		end
+
+		it "should fail if we try to release something that's not a bike" do
+			expect{ holder.release(double :person) }.to raise_error
+		end
+
 	end
 
 end

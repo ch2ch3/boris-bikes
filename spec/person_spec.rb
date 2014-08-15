@@ -22,7 +22,7 @@ describe Person do
 			expect(person.has_bike?).to eq true
 		end
 
-		it 'can not have more than one bike' do
+		it 'cannot have more than one bike' do
 			person.rent_bike_from(station)
 			expect{ person.rent_bike_from(station) }.to raise_error
 		end
@@ -42,15 +42,22 @@ describe Person do
 			person.has_accident!
 		end
 
+		it 'receives the same bike that the docking station releases' do
+			bike_id = station.available_bikes[-1].object_id
+			person.rent_bike_from(station)
+			expect(person.bike[0].object_id).to eq bike_id
+		end
+		
 		it 'should know what bike it has' do
 			person.rent_bike_from(station)
 			# expect(person.bike?).to return @bike
 		end
 
-		it 'receives the same bike that the docking station releases' do
-			bike_id = station.available_bikes[-1].object_id
+		it 'should not be able to rent a broken bike' do
+			bike.break!
+			another_bike.break!
 			person.rent_bike_from(station)
-			expect(person.bike[0].object_id).to eq bike_id
+			expect(person.has_bike?).to eq false
 		end
 
 	end

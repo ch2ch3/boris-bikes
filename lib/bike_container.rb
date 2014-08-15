@@ -26,10 +26,13 @@ module BikeContainer
 
 	def dock(bike)
 		raise "No more spaces!" if full?
+		raise "That's not a bike!" if bike.class != Bike
+		raise "That bike is already docked!" if bikes.include?(bike)
 		bikes << bike
 	end
 
 	def release(bike)
+		raise "Release failed." if !bikes.include?(bike)
 		bikes.delete(bike)
 	end
 
