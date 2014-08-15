@@ -2,10 +2,10 @@ require 'person'
 
 describe Person do
 
-	let(:person) { Person.new }
-	let(:bike) { Bike.new }
+	let(:person)       { Person.new }
+	let(:bike)         { Bike.new }
 	let(:another_bike) { Bike.new }
-	let(:station) { DockingStation.new(:bikes => [bike, another_bike]) }
+	let(:station)      { DockingStation.new(:bikes => [bike, another_bike]) }
 
 	context 'at initialisation' do
 

@@ -14,7 +14,7 @@ class Person
 
 	def rent_bike_from(station)
 		raise "You already have a bike!" if has_bike?
-		@bike << station.release!
+		@bike << station.available_bikes.pop
 	end
 
 	def return_bike_to(station)

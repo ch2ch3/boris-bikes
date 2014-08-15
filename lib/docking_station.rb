@@ -9,8 +9,4 @@ class DockingStation
 		self.capacity = options.fetch(:capacity, capacity)	
 	end
 
-	def release!
-	 	self.available_bikes.pop
-	end
-
 end
