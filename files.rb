@@ -1,0 +1,6 @@
+require './lib/bike_container'
+require './lib/docking_station'
+require './lib/van'
+require './lib/garage'
+require './lib/person'
+require './lib/bike'

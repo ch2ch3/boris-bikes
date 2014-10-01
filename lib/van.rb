@@ -19,6 +19,7 @@ class Van
 	def drop_off_broken_bikes_at(garage)
 		self.broken_bikes.each do |broken_bike|
 			self.release(broken_bike)
+			garage.dock(broken_bike)
 		end
 	end
 

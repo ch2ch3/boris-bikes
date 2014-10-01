@@ -40,12 +40,14 @@ module BikeContainer
 		bike_count == capacity
 	end
 
+	IS_WORKING = -> (bike) { bike.work? }
+
 	def available_bikes
-		bikes.select { |bike| bike.work? }
+		bikes.select(&IS_WORKING)
 	end
 
 	def broken_bikes
-		bikes.select { |bike| !bike.work? }
+		bikes.reject(&IS_WORKING)
 	end
 
 end

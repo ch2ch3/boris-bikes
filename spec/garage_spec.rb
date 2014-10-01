@@ -3,7 +3,7 @@ require 'bike_container_spec'
 
 describe Garage do
 	
-	let(:bike) { Bike.new }
+	let(:bike)   { Bike.new }
 	let(:garage) { Garage.new }
 
 	it_behaves_like "a bike container"
@@ -26,10 +26,15 @@ describe Garage do
 
 	end
 
-	it "fixes broken bikes" do
-		bike.break!
-		expect(bike.work?).to eq false
-		garage.dock(bike)
-		expect(bike.work?).to eq true
+	context "fixing bikes" do
+
+		it "fixes broken bikes" do
+			bike.break!
+			expect(bike.work?).to eq false
+			garage.dock(bike)
+			expect(bike.work?).to eq true
+		end
+
 	end
+	
 end
