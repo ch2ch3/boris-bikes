@@ -68,5 +68,5 @@ Pick up the fixed bike:
 
 Drop off the fixed bike:
 ```shell
-  > van.drop_off_broken_bikes_at(old_street)
+  > van.drop_off_fixed_bikes_at(old_street)
 ```
